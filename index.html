@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz | Bootcamp Placements</title>
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous"
+    />
+    <style>
+        /*enter any extra styling for your separators, here.*/
+
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div id="quiz-content"></div>
+
+
+
+    
+        <script>
+
+            // First, we will create several functions that will dynamically load the pages of our quiz, being the three different questions.
+            function loadHomePage() {
+                let outputDiv = document.getElementById('quiz-content')
+
+                outputDiv.textContent = ''
+
+                let newEl = document.createElement('h')
+                newEl.innerHTML = "<b>Kephane's coding quiz</b>"
+                outputDiv.appendChild(newEl)
+
+                let newEl2 = document.createElement('p')
+                newEl2.innerHTML = 'Here is a quick quiz, as required for our homework. This paragraph is simply a demo. Will be changed up later.'
+                outputDiv.appendChild(newEl2)
+
+                let newButton = document.createElement('button')
+                newButton.classList.add('btn', 'btn-outline-success')
+                newButton.setAttribute('type', 'button')
+                newButton.setAttribute('id', 'start')
+                newButton.innerHTML = 'Start'
+                outputDiv.appendChild(newButton)
+            }
+
+            
+            function loadFirstQ() {
+                let outputDiv = document.getElementById('quiz-content')
+
+                outputDiv.textContent = ''
+
+                let newEl = document.createElement('h')
+                newEl.innerHTML = "<b>Question number ONE:</b>"
+                outputDiv.appendChild(newEl)
+
+                let newEl2 = document.createElement('p')
+                newEl2.innerHTML = "Everyday man's onthe block, _________"
+                outputDiv.appendChild(newEl2)
+
+                let button1 = document.createElement('button')
+                button1.classList.add('btn', 'btn-outline-success')
+                button1.setAttribute('type', 'button')
+                button1.setAttribute('id', 'Roll')
+                button1.innerHTML = 'roll trees'
+                outputDiv.appendChild(button1)
+
+                let button2 = document.createElement('button')
+                button2.classList.add('btn', 'btn-outline-success')
+                button2.setAttribute('type', 'button')
+                button2.setAttribute('id', 'Smoke')
+                button2.innerHTML = 'Smoke trees'
+                outputDiv.appendChild(button2)
+
+                let button3 = document.createElement('button')
+                button3.classList.add('btn', 'btn-outline-success')
+                button3.setAttribute('type', 'button')
+                button3.setAttribute('id', 'Btrees')
+                button3.innerHTML = 'burn trees'
+                outputDiv.appendChild(button3)
+
+                let button4 = document.createElement('button')
+                button4.classList.add('btn', 'btn-outline-success')
+                button4.setAttribute('type', 'button')
+                button4.setAttribute('id', 'Burn')
+                button4.innerHTML = 'burn Tires'
+                outputDiv.appendChild(button4)
+                                
+            }
+            
+            function loadSecondQ() {
+                return
+                
+            }
+            
+            function loadThirdQ() {
+                return
+                
+            }
+            
+            function loadFinishPage() {
+                return
+                
+            }
+            
+
+            //Here, we add  event listeners to specific buttons, to load certain pages of the quiz,accordingly.
+            
+            loadHomePage()
+
+            let homePage = document.getElementById('start')
+            
+            homePage.addEventListener('click', loadFirstQ)
+
+
+
+            //When a wrong answer is selected, a child node is loaded under the new output div, for the quiz questions/the end page. 
+            //This note will say **Correct!** or **Wrong!** accordingly.
+
+
+            //The Highscores button a the top left corner (I'll create a NavBar) will bring you to the highscores page.
+
+
+
+            // The submit results button will save yur results to the local storage, and then bring you to the highscores page.
+
+
+
+            //Here we add another click event listener to the start button, and the last quiz page buttons, to turn the timer on/off.
+            //The timer will count down 1 every 1000ms. if it reaches 0 before quiz ends, then we call the end loadFinishPage function, and stop the timer. timer value = score.
+
+
+
+
+
+        </script>
+
+
+
+
+    </div>
+    
+</body>
+</html>
