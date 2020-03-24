@@ -28,6 +28,7 @@
     <div class="container">
       <div  class="mb-4" id="quiz-content"></div>
       <div id="answer-key"></div>
+      <div id="grand-rankings"></div>
     </div>
 
       <script>
@@ -36,6 +37,7 @@
         let timer
         let scores = JSON.parse(localStorage.getItem('scores'))
         let underDiv = document.getElementById("answer-key")
+        let subDiv = document.getElementById("grand-rankings")
 
         function loadHomePage() {
           let outputDiv = document.getElementById("quiz-content");
@@ -169,7 +171,7 @@
           outputDiv.textContent = "";
 
           let newEl = document.createElement("h");
-          newEl.innerHTML = "<b>Question number ONE:</b>";
+          newEl.innerHTML = "<b>Question number THREE:</b>";
           outputDiv.appendChild(newEl);
 
           let newEl2 = document.createElement("p");
@@ -238,6 +240,8 @@
           newInput.setAttribute("id", "name-input");
           newForm.appendChild(newInput);
 
+          loadHighscores();
+
           let subButton = document.createElement("button");
           subButton.classList.add("btn", "btn-warning");
           subButton.setAttribute("type", "submit");
@@ -251,6 +255,7 @@
               scores.push([newInput.value,timer]);
               localStorage.setItem("scores", JSON.stringify(scores))
               console.log(scores)
+              loadHighscores();
 
             //   localStorage.getItem('kephane')
           })
@@ -261,6 +266,20 @@
 
         }
         
+        function loadHighscores() {
+            subDiv.textContent =''
+            let scoresList = document.createElement('ol')
+            subDiv.appendChild(scoresList)
+            let storedScores = JSON.parse(localStorage.getItem('scores'))
+            for (let gameScore of storedScores) {
+                
+                let newRanking = document.createElement('li')
+                newRanking.classList.add('border-bottom-0', 'border-secondary', 'bg-light')
+                newRanking.innerHTML = gameScore
+                scoresList.appendChild(newRanking)
+               
+            }
+        }
 
 
         function wrongAnswer(){
