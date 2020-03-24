@@ -1,254 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz | Bootcamp Placements</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz | Know Your Lyrics</title>
     <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
     />
     <style>
-        /*enter any extra styling for your separators, here.*/
-
+      /*enter any extra styling for your separators, here.*/
+      .wrongg {
+          border-top: 3px;
+          border-color: darkred;
+      }
+      .correctt {
+          border-top: 3px;
+          border-color: lawngreen;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
+    <span class="m-4" id="timer"></span>
 
     <div class="container">
-        <div id="quiz-content"></div>
-
-
-
-    
-        <script>
-
-            // First, we will create several functions that will dynamically load the pages of our quiz, being the three different questions.
-            function loadHomePage() {
-                let outputDiv = document.getElementById('quiz-content')
-
-                outputDiv.textContent = ''
-
-                let newEl = document.createElement('h')
-                newEl.innerHTML = "<b>Kephane's coding quiz</b>"
-                outputDiv.appendChild(newEl)
-
-                let newEl2 = document.createElement('p')
-                newEl2.innerHTML = 'Here is a quick quiz, as required for our homework. This paragraph is simply a demo. Will be changed up later.'
-                outputDiv.appendChild(newEl2)
-
-                let newButton = document.createElement('button')
-                newButton.classList.add('btn', 'btn-outline-success')
-                newButton.setAttribute('type', 'button')
-                newButton.setAttribute('id', 'start')
-                newButton.innerHTML = 'Start'
-                outputDiv.appendChild(newButton)
-            }
-
-            
-            function loadFirstQ() {
-                let outputDiv = document.getElementById('quiz-content')
-
-                outputDiv.textContent = ''
-
-                let newEl = document.createElement('h')
-                newEl.innerHTML = "<b>Question number ONE:</b>"
-                outputDiv.appendChild(newEl)
-
-                let newEl2 = document.createElement('p')
-                newEl2.innerHTML = "Everyday man's on the block, _________"
-                outputDiv.appendChild(newEl2)
-
-                let button1 = document.createElement('button')
-                button1.classList.add('btn', 'btn-outline-success')
-                button1.setAttribute('type', 'button')
-                button1.setAttribute('answer1', 'wrong!')
-                button1.innerHTML = 'roll trees'
-                outputDiv.appendChild(button1)
-
-                let button2 = document.createElement('button')
-                button2.classList.add('btn', 'btn-outline-success')
-                button2.setAttribute('type', 'button')
-                button2.setAttribute('answer11', 'correct!')
-                button2.innerHTML = 'Smoke trees'
-                outputDiv.appendChild(button2)
-
-                let button3 = document.createElement('button')
-                button3.classList.add('btn', 'btn-outline-success')
-                button3.setAttribute('type', 'button')
-                button3.setAttribute('answer1', 'wrong!')
-                button3.innerHTML = 'burn trees'
-                outputDiv.appendChild(button3)
-
-                let button4 = document.createElement('button')
-                button4.classList.add('btn', 'btn-outline-success')
-                button4.setAttribute('type', 'button')
-                button4.setAttribute('answer1', 'wrong!')
-                button4.innerHTML = 'burn Tires'
-                outputDiv.appendChild(button4)
-                
-                
-                button2.addEventListener('click', loadSecondQ);
-               
-
-                
-                // for (let firstButtons of document.querySelectorAll('.answer1')) {
-                //     fisrtButtons.addEventListener('click', loadSecondQ)
-    
-                //  }
-                
-            }
-            
-            function loadSecondQ() {
-                let outputDiv = document.getElementById('quiz-content')
-
-                outputDiv.textContent = ''
-
-                let newEl = document.createElement('h')
-                newEl.innerHTML = "<b>Question number TWO:</b>"
-                outputDiv.appendChild(newEl)
-
-                let newEl2 = document.createElement('p')
-                newEl2.innerHTML = "You donut, nose long like _________"
-                outputDiv.appendChild(newEl2)
-
-                let button1 = document.createElement('button')
-                button1.classList.add('btn', 'btn-outline-success')
-                button1.setAttribute('type', 'button')
-                button1.setAttribute('answer2', 'wrong!')
-                button1.innerHTML = 'Pinocchio'
-                outputDiv.appendChild(button1)
-
-                let button2 = document.createElement('button')
-                button2.classList.add('btn', 'btn-outline-success')
-                button2.setAttribute('type', 'button')
-                button2.setAttribute('answer2', 'wrong!')
-                button2.innerHTML = 'a liar'
-                outputDiv.appendChild(button2)
-
-                let button3 = document.createElement('button')
-                button3.classList.add('btn', 'btn-outline-success')
-                button3.setAttribute('type', 'button')
-                button3.setAttribute('answer2', 'wrong!')
-                button3.innerHTML = 'garden rose'
-                outputDiv.appendChild(button3)
-
-                let button4 = document.createElement('button')
-                button4.classList.add('btn', 'btn-outline-success')
-                button4.setAttribute('type', 'button')
-                button4.setAttribute('answer2', 'correct!')
-                button4.innerHTML = 'garden hose'
-                outputDiv.appendChild(button4)
-
-                button4.addEventListener('click', loadThirdQ);
-                
-            }
-            
-            function loadThirdQ() {
-                let outputDiv = document.getElementById('quiz-content')
-
-                outputDiv.textContent = ''
-
-                let newEl = document.createElement('h')
-                newEl.innerHTML = "<b>Question number ONE:</b>"
-                outputDiv.appendChild(newEl)
-
-                let newEl2 = document.createElement('p')
-                newEl2.innerHTML = "I trap, trap, trap on the phone, movin' that _________"
-                outputDiv.appendChild(newEl2)
-
-                let button1 = document.createElement('button')
-                button1.classList.add('btn', 'btn-outline-success')
-                button1.setAttribute('type', 'button')
-                button1.setAttribute('answer33', 'correct!')
-                button1.innerHTML = 'cornflakes'
-                outputDiv.appendChild(button1)
-
-                let button2 = document.createElement('button')
-                button2.classList.add('btn', 'btn-outline-success')
-                button2.setAttribute('type', 'button')
-                button2.setAttribute('answer3', 'wrong!')
-                button2.innerHTML = 'cornroll'
-                outputDiv.appendChild(button2)
-
-                let button3 = document.createElement('button')
-                button3.classList.add('btn', 'btn-outline-success')
-                button3.setAttribute('type', 'button')
-                button3.setAttribute('answer3', 'wrong!')
-                button3.innerHTML = 'frostedflakes'
-                outputDiv.appendChild(button3)
-
-                let button4 = document.createElement('button')
-                button4.classList.add('btn', 'btn-outline-success')
-                button4.setAttribute('type', 'button')
-                button4.setAttribute('answer1', 'wrong!')
-                button4.innerHTML = 'corndog'
-                outputDiv.appendChild(button4)
-                
-                
-                button1.addEventListener('click', loadFinishPage);
-               
-                
-            }
-            
-            function loadFinishPage() {
-                let outputDiv = document.getElementById('quiz-content')
-
-                outputDiv.textContent = ''
-                
-            }
-            
-            
-            //Here, we add  event listeners to specific buttons, to load certain pages of the quiz,accordingly.
-            
-            loadHomePage()
-
-            let homePage = document.getElementById('start')
-            
-            homePage.addEventListener('click', loadFirstQ)
-
-
-
-            // let firstButtons = document.getElementsByClassName('answer1')
-            
-            // firstButtons.addEventListener('click', loadSecondQ)
-
-
-            
-            //When a wrong answer is selected, a child node is loaded under the new output div, for the quiz questions/the end page. 
-            //This note will say **Correct!** or **Wrong!** accordingly.
-
-
-            
-            
-            
-            
-            
-            
-            //The Highscores button a the top left corner (I'll create a NavBar) will bring you to the highscores page.
-            
-            
-            
-            // The submit results button will save yur results to the local storage, and then bring you to the highscores page.
-            
-            
-            
-            //Here we add another click event listener to the start button, and the last quiz page buttons, to turn the timer on/off.
-            //The timer will count down 1 every 1000ms. if it reaches 0 before quiz ends, then we call the end loadFinishPage function, and stop the timer. timer value = score.
-            
-            
-            
-            
-            
-        </script>
-
-
-
-
+      <div id="quiz-content"></div>
+      <div id="answer-key"></div>
     </div>
-    
-</body>
+
+      <script>
+        // First, we will create several functions that will dynamically load the pages of our quiz, being the three different questions.
+
+        let timer
+        let scores = JSON.parse(localStorage.getItem('scores'))
+        let underDiv = document.getElementById("answer-key")
+
+        function loadHomePage() {
+          let outputDiv = document.getElementById("quiz-content");
+
+          outputDiv.textContent = "";
+
+          let newEl = document.createElement("h");
+          newEl.innerHTML = "<b>Kephane's coding quiz</b>";
+          outputDiv.appendChild(newEl);
+
+          let newEl2 = document.createElement("p");
+          newEl2.innerHTML =
+            "Here is a quick quiz, as required for our homework. This paragraph is simply a demo. Will be changed up later.";
+          outputDiv.appendChild(newEl2);
+
+          let newButton = document.createElement("button");
+          newButton.classList.add("btn", "btn-outline-success");
+          newButton.setAttribute("type", "button");
+          newButton.setAttribute("id", "start");
+          newButton.innerHTML = "Start";
+          outputDiv.appendChild(newButton);
+        }
+
+        function loadFirstQ() {
+          let outputDiv = document.getElementById("quiz-content");
+
+          outputDiv.textContent = "";
+
+          startTimer();
+
+          let newEl = document.createElement("h");
+          newEl.innerHTML = "<b>Question number ONE:</b>";
+          outputDiv.appendChild(newEl);
+
+          let newEl2 = document.createElement("p");
+          newEl2.innerHTML = "Everyday man's on the block, _________";
+          outputDiv.appendChild(newEl2);
+
+          let button1 = document.createElement("button");
+          button1.classList.add("btn", "btn-outline-success");
+          button1.setAttribute("type", "button");
+          button1.setAttribute("answer1", "wrong!");
+          button1.innerHTML = "roll trees";
+          button1.addEventListener('click', wrongAnswer)
+          
+          outputDiv.appendChild(button1);
+
+          let button2 = document.createElement("button");
+          button2.classList.add("btn", "btn-outline-success");
+          button2.setAttribute("type", "button");
+          button2.setAttribute("answer11", "correct!");
+          button2.innerHTML = "Smoke trees";
+          outputDiv.appendChild(button2);
+
+          let button3 = document.createElement("button");
+          button3.classList.add("btn", "btn-outline-success");
+          button3.setAttribute("type", "button");
+          button3.setAttribute("answer1", "wrong!");
+          button3.innerHTML = "burn trees";
+          outputDiv.appendChild(button3);
+
+          let button4 = document.createElement("button");
+          button4.classList.add("btn", "btn-outline-success");
+          button4.setAttribute("type", "button");
+          button4.setAttribute("answer1", "wrong!");
+          button4.innerHTML = "burn Tires";
+          outputDiv.appendChild(button4);
+
+          button2.addEventListener("click", loadSecondQ);
+
+          // for (let firstButtons of document.querySelectorAll('.answer1')) {
+          //     fisrtButtons.addEventListener('click', loadSecondQ)
+
+          //  }
+        }
+
+        function loadSecondQ() {
+          let outputDiv = document.getElementById("quiz-content");
+
+          outputDiv.textContent = "";
+
+          let newEl = document.createElement("h");
+          newEl.innerHTML = "<b>Question number TWO:</b>";
+          outputDiv.appendChild(newEl);
+
+          let newEl2 = document.createElement("p");
+          newEl2.innerHTML = "You donut, nose long like _________";
+          outputDiv.appendChild(newEl2);
+
+          let button1 = document.createElement("button");
+          button1.classList.add("btn", "btn-outline-success");
+          button1.setAttribute("type", "button");
+          button1.setAttribute("answer2", "wrong!");
+          button1.innerHTML = "Pinocchio";
+          outputDiv.appendChild(button1);
+
+          let button2 = document.createElement("button");
+          button2.classList.add("btn", "btn-outline-success");
+          button2.setAttribute("type", "button");
+          button2.setAttribute("answer2", "wrong!");
+          button2.innerHTML = "a liar";
+          outputDiv.appendChild(button2);
+
+          let button3 = document.createElement("button");
+          button3.classList.add("btn", "btn-outline-success");
+          button3.setAttribute("type", "button");
+          button3.setAttribute("answer2", "wrong!");
+          button3.innerHTML = "garden rose";
+          outputDiv.appendChild(button3);
+
+          let button4 = document.createElement("button");
+          button4.classList.add("btn", "btn-outline-success");
+          button4.setAttribute("type", "button");
+          button4.setAttribute("answer2", "correct!");
+          button4.innerHTML = "garden hose";
+          outputDiv.appendChild(button4);
+
+          button4.addEventListener("click", loadThirdQ);
+        }
+
+        function loadThirdQ() {
+          let outputDiv = document.getElementById("quiz-content");
+
+          outputDiv.textContent = "";
+
+          let newEl = document.createElement("h");
+          newEl.innerHTML = "<b>Question number ONE:</b>";
+          outputDiv.appendChild(newEl);
+
+          let newEl2 = document.createElement("p");
+          newEl2.innerHTML =
+            "I trap, trap, trap on the phone, movin' that _________";
+          outputDiv.appendChild(newEl2);
+
+          let button1 = document.createElement("button");
+          button1.classList.add("btn", "btn-outline-success");
+          button1.setAttribute("type", "button");
+          button1.setAttribute("answer33", "correct!");
+          button1.innerHTML = "cornflakes";
+          outputDiv.appendChild(button1);
+
+          let button2 = document.createElement("button");
+          button2.classList.add("btn", "btn-outline-success");
+          button2.setAttribute("type", "button");
+          button2.setAttribute("answer3", "wrong!");
+          button2.innerHTML = "cornroll";
+          outputDiv.appendChild(button2);
+
+          let button3 = document.createElement("button");
+          button3.classList.add("btn", "btn-outline-success");
+          button3.setAttribute("type", "button");
+          button3.setAttribute("answer3", "wrong!");
+          button3.innerHTML = "frostedflakes";
+          outputDiv.appendChild(button3);
+
+          let button4 = document.createElement("button");
+          button4.classList.add("btn", "btn-outline-success");
+          button4.setAttribute("type", "button");
+          button4.setAttribute("answer1", "wrong!");
+          button4.innerHTML = "corndog";
+          outputDiv.appendChild(button4);
+
+          button1.addEventListener("click", loadFinishPage);
+        }
+
+        function loadFinishPage() {
+            stopTimer();
+          let outputDiv = document.getElementById("quiz-content");
+
+          outputDiv.textContent = "";
+
+          let newEl = document.createElement("h");
+          newEl.innerHTML =
+            "<b>All done!</b> You have reached a score of " + '<b>' +
+            timer + '<b>'
+            " points. <br>";
+          outputDiv.appendChild(newEl);
+
+          let newForm = document.createElement("form");
+          newForm.innerHTML =
+            "Enter your name below. Click button to record your score.";
+          newForm.setAttribute("style", "max-width: 400px;");
+          newForm.setAttribute("id", "start");
+          outputDiv.appendChild(newForm);
+
+          let newInput = document.createElement("input");
+          newInput.classList.add("mb-3", "input-group");
+          newInput.setAttribute("type", "text");
+          newInput.setAttribute("id", "name-input");
+          newForm.appendChild(newInput);
+
+          let subButton = document.createElement("button");
+          subButton.classList.add("btn", "btn-warning");
+          subButton.setAttribute("type", "submit");
+          subButton.setAttribute("id", "submit-name");
+          subButton.innerHTML = "Submit score!";
+          newForm.appendChild(subButton);
+          subButton.addEventListener('click', function() {
+              event.preventDefault();
+              console.log(newInput.value)
+              console.log(timer)
+              scores.push([newInput.value,timer]);
+              localStorage.setItem("scores", JSON.stringify(scores))
+              console.log(scores)
+
+            //   localStorage.getItem('kephane')
+          })
+
+        //   localStorage.setItem('items', JSON.stringify(itemsArray))
+        //     const data = JSON.parse(localStorage.getItem('items'))
+
+
+        }
+
+
+        function wrongAnswer(){
+            underDiv.textContent = ''
+            let newHead = document.createElement('h3')
+            newHead.classList.add('wrongg')
+            underDiv.appendChild(newHead)
+
+            
+        }
+
+        function correctAnswer(){
+            underDiv.textContent = ''
+            let newHead = document.createElement('h3')
+            newHead.classList.add('correctt')
+
+            
+        }
+
+        //Here, we add  event listeners to specific buttons, to load certain pages of the quiz,accordingly.
+
+        loadHomePage();
+
+        let homePage = document.getElementById("start");
+
+        homePage.addEventListener("click", loadFirstQ);
+
+        // let firstButtons = document.getElementsByClassName('answer1')
+
+        // firstButtons.addEventListener('click', loadSecondQ)
+
+        //When a wrong answer is selected, a child node is loaded under the new output div, for the quiz questions/the end page.
+        //This note will say **Correct!** or **Wrong!** accordingly.
+
+        //The Highscores button a the top left corner (I'll create a NavBar) will bring you to the highscores page.
+
+        // The submit results button will save yur results to the local storage, and then bring you to the highscores page.
+
+        //Here we add another click event listener to the start button, and the last quiz page buttons, to turn the timer on/off.
+        //The timer will count down 1 every 1000ms. if it reaches 0 before quiz ends, then we call the end loadFinishPage function, and stop the timer. timer value = score.
+        
+        let timerIntervalId
+
+
+        function stopTimer(){
+
+            clearInterval(timerIntervalId);
+            
+            document.getElementById("timer").innerHTML = ''
+        }
+
+
+        function startTimer(){
+
+            
+                timer = 90;
+            
+                timerIntervalId = setInterval(function() {
+                
+                document.getElementById("timer").innerHTML = timer;
+                timer--;
+
+                if (timer <= -1) {
+                    timer = 0
+                    loadFinishPage()
+                    return
+                }                
+            }, 1000);
+
+
+            console.log(timerIntervalId)
+            
+        }
+
+        
+        
+        </script>
+        
+  </body>
 </html>
