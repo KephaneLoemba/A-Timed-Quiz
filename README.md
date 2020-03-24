@@ -1,37 +1,7 @@
-## Welcome to GitHub Pages
+## A simple Quiz
 
-You can use the [editor on GitHub](https://github.com/KephaneLoemba/A-Timed-Quiz/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+**_Hello reviewer!_** Here is my siple quiz generator. Wrong answers substract 10 points. final score is timer value after last question, or 0 if timer runs out.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Heres a link to the [Application.](https://kephaneloemba.github.io/A-Timed-Quiz/)
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/KephaneLoemba/A-Timed-Quiz/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+_Good luck!_
