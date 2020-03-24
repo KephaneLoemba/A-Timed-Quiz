@@ -13,12 +13,12 @@
     <style>
       /*enter any extra styling for your separators, here.*/
       .wrongg {
-          border-bottom: 20px;
-          border-color: darkred;
+        border-bottom: 20px;
+        border-color: darkred;
       }
       .correctt {
-          border-top: 3px;
-          border-color: lawngreen;
+        border-top: 3px;
+        border-color: lawngreen;
       }
     </style>
   </head>
@@ -26,385 +26,357 @@
     <span class="m-4" id="timer"></span>
 
     <div class="container">
-      <div  class="mb-4" id="quiz-content"></div>
+      <div class="mb-4" id="quiz-content"></div>
       <div id="answer-key"></div>
       <div id="grand-rankings"></div>
     </div>
 
-      <script>
-        // First, we will create several functions that will dynamically load the pages of our quiz, being the three different questions.
+    <script>
+      // First, we will create several functions that will dynamically load the pages of our quiz, being the three different questions.
 
-        let timer
-        let scores = []
-        let memory = JSON.parse(localStorage.getItem('scores'))
-        if (memory) {
-            scores = memory
-        }
+      let timer;
+      let scores = [];
+      let memory = JSON.parse(localStorage.getItem("scores"));
+      if (memory) {
+        scores = memory;
+      }
 
+      let underDiv = document.getElementById("answer-key");
+      let subDiv = document.getElementById("grand-rankings");
 
-        let underDiv = document.getElementById("answer-key")
-        let subDiv = document.getElementById("grand-rankings")
+      function loadHomePage() {
+        let outputDiv = document.getElementById("quiz-content");
 
-        function loadHomePage() {
-          let outputDiv = document.getElementById("quiz-content");
+        outputDiv.textContent = "";
 
-          outputDiv.textContent = "";
+        let newEl = document.createElement("h");
+        newEl.innerHTML = "<b>Kephane's coding quiz</b>";
+        outputDiv.appendChild(newEl);
 
-          let newEl = document.createElement("h");
-          newEl.innerHTML = "<b>Kephane's coding quiz</b>";
-          outputDiv.appendChild(newEl);
+        let newEl2 = document.createElement("p");
+        newEl2.innerHTML =
+          "Here is a quick quiz, as required for our homework. This paragraph is simply a demo. Will be changed up later.";
+        outputDiv.appendChild(newEl2);
 
-          let newEl2 = document.createElement("p");
-          newEl2.innerHTML =
-            "Here is a quick quiz, as required for our homework. This paragraph is simply a demo. Will be changed up later.";
-          outputDiv.appendChild(newEl2);
+        let newButton = document.createElement("button");
+        newButton.classList.add("btn", "btn-outline-success");
+        newButton.setAttribute("type", "button");
+        newButton.setAttribute("id", "start");
+        newButton.innerHTML = "Start";
+        outputDiv.appendChild(newButton);
+      }
 
-          let newButton = document.createElement("button");
-          newButton.classList.add("btn", "btn-outline-success");
-          newButton.setAttribute("type", "button");
-          newButton.setAttribute("id", "start");
-          newButton.innerHTML = "Start";
-          outputDiv.appendChild(newButton);
-        }
+      function loadFirstQ() {
+        let outputDiv = document.getElementById("quiz-content");
 
-        function loadFirstQ() {
-          let outputDiv = document.getElementById("quiz-content");
+        outputDiv.textContent = "";
 
-          outputDiv.textContent = "";
+        startTimer();
 
-          startTimer();
+        let newEl = document.createElement("h");
+        newEl.innerHTML = "<b>Question number ONE:</b>";
+        outputDiv.appendChild(newEl);
 
-          let newEl = document.createElement("h");
-          newEl.innerHTML = "<b>Question number ONE:</b>";
-          outputDiv.appendChild(newEl);
+        let newEl2 = document.createElement("p");
+        newEl2.innerHTML = "Everyday man's on the block, _________";
+        outputDiv.appendChild(newEl2);
 
-          let newEl2 = document.createElement("p");
-          newEl2.innerHTML = "Everyday man's on the block, _________";
-          outputDiv.appendChild(newEl2);
+        let button1 = document.createElement("button");
+        button1.classList.add("btn", "btn-outline-success");
+        button1.setAttribute("type", "button");
+        button1.setAttribute("answer1", "wrong!");
+        button1.innerHTML = "roll trees";
+        button1.addEventListener("click", wrongAnswer);
 
-          let button1 = document.createElement("button");
-          button1.classList.add("btn", "btn-outline-success");
-          button1.setAttribute("type", "button");
-          button1.setAttribute("answer1", "wrong!");
-          button1.innerHTML = "roll trees";
-          button1.addEventListener('click', wrongAnswer)
-          
-          outputDiv.appendChild(button1);
+        outputDiv.appendChild(button1);
 
-          let button2 = document.createElement("button");
-          button2.classList.add("btn", "btn-outline-success");
-          button2.setAttribute("type", "button");
-          button2.setAttribute("answer11", "correct!");
-          button2.innerHTML = "Smoke trees";
-          button2.addEventListener('click', correctAnswer)
-          outputDiv.appendChild(button2);
+        let button2 = document.createElement("button");
+        button2.classList.add("btn", "btn-outline-success");
+        button2.setAttribute("type", "button");
+        button2.setAttribute("answer11", "correct!");
+        button2.innerHTML = "Smoke trees";
+        button2.addEventListener("click", correctAnswer);
+        outputDiv.appendChild(button2);
 
-          let button3 = document.createElement("button");
-          button3.classList.add("btn", "btn-outline-success");
-          button3.setAttribute("type", "button");
-          button3.setAttribute("answer1", "wrong!");
-          button3.innerHTML = "burn trees";
-          button3.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button3);
+        let button3 = document.createElement("button");
+        button3.classList.add("btn", "btn-outline-success");
+        button3.setAttribute("type", "button");
+        button3.setAttribute("answer1", "wrong!");
+        button3.innerHTML = "burn trees";
+        button3.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button3);
 
-          let button4 = document.createElement("button");
-          button4.classList.add("btn", "btn-outline-success");
-          button4.setAttribute("type", "button");
-          button4.setAttribute("answer1", "wrong!");
-          button4.innerHTML = "burn Tires";
-          button4.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button4);
+        let button4 = document.createElement("button");
+        button4.classList.add("btn", "btn-outline-success");
+        button4.setAttribute("type", "button");
+        button4.setAttribute("answer1", "wrong!");
+        button4.innerHTML = "burn Tires";
+        button4.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button4);
 
-          button2.addEventListener("click", loadSecondQ);
+        button2.addEventListener("click", loadSecondQ);
 
-          // for (let firstButtons of document.querySelectorAll('.answer1')) {
-          //     fisrtButtons.addEventListener('click', loadSecondQ)
+        // for (let firstButtons of document.querySelectorAll('.answer1')) {
+        //     fisrtButtons.addEventListener('click', loadSecondQ)
 
-          //  }
-        }
+        //  }
+      }
 
-        function loadSecondQ() {
-          let outputDiv = document.getElementById("quiz-content");
+      function loadSecondQ() {
+        let outputDiv = document.getElementById("quiz-content");
 
-          outputDiv.textContent = "";
+        outputDiv.textContent = "";
 
-          let newEl = document.createElement("h");
-          newEl.innerHTML = "<b>Question number TWO:</b>";
-          outputDiv.appendChild(newEl);
+        let newEl = document.createElement("h");
+        newEl.innerHTML = "<b>Question number TWO:</b>";
+        outputDiv.appendChild(newEl);
 
-          let newEl2 = document.createElement("p");
-          newEl2.innerHTML = "You donut, nose long like _________";
-          outputDiv.appendChild(newEl2);
+        let newEl2 = document.createElement("p");
+        newEl2.innerHTML = "You donut, nose long like _________";
+        outputDiv.appendChild(newEl2);
 
-          let button1 = document.createElement("button");
-          button1.classList.add("btn", "btn-outline-success");
-          button1.setAttribute("type", "button");
-          button1.setAttribute("answer2", "wrong!");
-          button1.innerHTML = "Pinocchio";
-          button1.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button1);
+        let button1 = document.createElement("button");
+        button1.classList.add("btn", "btn-outline-success");
+        button1.setAttribute("type", "button");
+        button1.setAttribute("answer2", "wrong!");
+        button1.innerHTML = "Pinocchio";
+        button1.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button1);
 
-          let button2 = document.createElement("button");
-          button2.classList.add("btn", "btn-outline-success");
-          button2.setAttribute("type", "button");
-          button2.setAttribute("answer2", "wrong!");
-          button2.innerHTML = "a liar";
-          button2.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button2);
+        let button2 = document.createElement("button");
+        button2.classList.add("btn", "btn-outline-success");
+        button2.setAttribute("type", "button");
+        button2.setAttribute("answer2", "wrong!");
+        button2.innerHTML = "a liar";
+        button2.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button2);
 
-          let button3 = document.createElement("button");
-          button3.classList.add("btn", "btn-outline-success");
-          button3.setAttribute("type", "button");
-          button3.setAttribute("answer2", "wrong!");
-          button3.innerHTML = "garden rose";
-          button3.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button3);
+        let button3 = document.createElement("button");
+        button3.classList.add("btn", "btn-outline-success");
+        button3.setAttribute("type", "button");
+        button3.setAttribute("answer2", "wrong!");
+        button3.innerHTML = "garden rose";
+        button3.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button3);
 
-          let button4 = document.createElement("button");
-          button4.classList.add("btn", "btn-outline-success");
-          button4.setAttribute("type", "button");
-          button4.setAttribute("answer2", "correct!");
-          button4.innerHTML = "garden hose";
-          button4.addEventListener('click', correctAnswer)
-          outputDiv.appendChild(button4);
+        let button4 = document.createElement("button");
+        button4.classList.add("btn", "btn-outline-success");
+        button4.setAttribute("type", "button");
+        button4.setAttribute("answer2", "correct!");
+        button4.innerHTML = "garden hose";
+        button4.addEventListener("click", correctAnswer);
+        outputDiv.appendChild(button4);
 
-          button4.addEventListener("click", loadThirdQ);
-        }
+        button4.addEventListener("click", loadThirdQ);
+      }
 
-        function loadThirdQ() {
-          let outputDiv = document.getElementById("quiz-content");
+      function loadThirdQ() {
+        let outputDiv = document.getElementById("quiz-content");
 
-          outputDiv.textContent = "";
+        outputDiv.textContent = "";
 
-          let newEl = document.createElement("h");
-          newEl.innerHTML = "<b>Question number THREE:</b>";
-          outputDiv.appendChild(newEl);
+        let newEl = document.createElement("h");
+        newEl.innerHTML = "<b>Question number THREE:</b>";
+        outputDiv.appendChild(newEl);
 
-          let newEl2 = document.createElement("p");
-          newEl2.innerHTML =
-            "I trap, trap, trap on the phone, movin' that _________";
-          outputDiv.appendChild(newEl2);
+        let newEl2 = document.createElement("p");
+        newEl2.innerHTML =
+          "I trap, trap, trap on the phone, movin' that _________";
+        outputDiv.appendChild(newEl2);
 
-          let button1 = document.createElement("button");
-          button1.classList.add("btn", "btn-outline-success");
-          button1.setAttribute("type", "button");
-          button1.setAttribute("answer33", "correct!");
-          button1.innerHTML = "cornflakes";
-          button1.addEventListener('click', correctAnswer)
-          outputDiv.appendChild(button1);
+        let button1 = document.createElement("button");
+        button1.classList.add("btn", "btn-outline-success");
+        button1.setAttribute("type", "button");
+        button1.setAttribute("answer33", "correct!");
+        button1.innerHTML = "cornflakes";
+        button1.addEventListener("click", correctAnswer);
+        outputDiv.appendChild(button1);
 
-          let button2 = document.createElement("button");
-          button2.classList.add("btn", "btn-outline-success");
-          button2.setAttribute("type", "button");
-          button2.setAttribute("answer3", "wrong!");
-          button2.innerHTML = "cornroll";
-          button2.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button2);
+        let button2 = document.createElement("button");
+        button2.classList.add("btn", "btn-outline-success");
+        button2.setAttribute("type", "button");
+        button2.setAttribute("answer3", "wrong!");
+        button2.innerHTML = "cornroll";
+        button2.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button2);
 
-          let button3 = document.createElement("button");
-          button3.classList.add("btn", "btn-outline-success");
-          button3.setAttribute("type", "button");
-          button3.setAttribute("answer3", "wrong!");
-          button3.innerHTML = "frostedflakes";
-          button3.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button3);
+        let button3 = document.createElement("button");
+        button3.classList.add("btn", "btn-outline-success");
+        button3.setAttribute("type", "button");
+        button3.setAttribute("answer3", "wrong!");
+        button3.innerHTML = "frostedflakes";
+        button3.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button3);
 
-          let button4 = document.createElement("button");
-          button4.classList.add("btn", "btn-outline-success");
-          button4.setAttribute("type", "button");
-          button4.setAttribute("answer1", "wrong!");
-          button4.innerHTML = "corndog";
-          button4.addEventListener('click', wrongAnswer)
-          outputDiv.appendChild(button4);
+        let button4 = document.createElement("button");
+        button4.classList.add("btn", "btn-outline-success");
+        button4.setAttribute("type", "button");
+        button4.setAttribute("answer1", "wrong!");
+        button4.innerHTML = "corndog";
+        button4.addEventListener("click", wrongAnswer);
+        outputDiv.appendChild(button4);
 
-          button1.addEventListener("click", loadFinishPage);
-        }
+        button1.addEventListener("click", loadFinishPage);
+      }
 
-        function loadFinishPage() {
-            stopTimer();
-          let outputDiv = document.getElementById("quiz-content");
+      function loadFinishPage() {
+        stopTimer();
+        let outputDiv = document.getElementById("quiz-content");
 
-          outputDiv.textContent = "";
+        outputDiv.textContent = "";
 
-          let newEl = document.createElement("h");
-          newEl.innerHTML =
-            "<b>All done!</b> You have reached a score of " + '<b>' +
-            timer + '</b>' +
-            " points. <br>";
-          outputDiv.appendChild(newEl);
+        let newEl = document.createElement("h");
+        newEl.innerHTML =
+          "<b>All done!</b> You have reached a score of " +
+          "<b>" +
+          timer +
+          "</b>" +
+          " points. <br>";
+        outputDiv.appendChild(newEl);
 
-          let newForm = document.createElement("form");
-          newForm.innerHTML =
-            "Enter your name below. Click submit button to record your score.";
-          newForm.setAttribute("style", "max-width: 400px;");
-          newForm.setAttribute("id", "start");
-          outputDiv.appendChild(newForm);
+        let newForm = document.createElement("form");
+        newForm.innerHTML =
+          "Enter your name below. Click submit button to record your score.";
+        newForm.setAttribute("style", "max-width: 400px;");
+        newForm.setAttribute("id", "start");
+        outputDiv.appendChild(newForm);
 
-          let newInput = document.createElement("input");
-          newInput.classList.add("mb-3", "input-group");
-          newInput.setAttribute("type", "text");
-          newInput.setAttribute("id", "name-input");
-          newForm.appendChild(newInput);
+        let newInput = document.createElement("input");
+        newInput.classList.add("mb-3", "input-group");
+        newInput.setAttribute("type", "text");
+        newInput.setAttribute("id", "name-input");
+        newForm.appendChild(newInput);
 
+        loadHighscores();
+
+        let subButton = document.createElement("button");
+        subButton.classList.add("btn", "btn-warning");
+        subButton.setAttribute("type", "submit");
+        subButton.setAttribute("id", "submit-name");
+        subButton.innerHTML = "Submit!";
+        newForm.appendChild(subButton);
+        subButton.addEventListener("click", function() {
+          event.preventDefault();
+          console.log(newInput.value);
+          console.log(timer);
+          scores.push([newInput.value, timer]);
+          localStorage.setItem("scores", JSON.stringify(scores));
+          console.log(scores);
           loadHighscores();
+        });
 
-          let subButton = document.createElement("button");
-          subButton.classList.add("btn", "btn-warning");
-          subButton.setAttribute("type", "submit");
-          subButton.setAttribute("id", "submit-name");
-          subButton.innerHTML = "Submit!";
-          newForm.appendChild(subButton);
-          subButton.addEventListener('click', function() {
-              event.preventDefault();
-              console.log(newInput.value)
-              console.log(timer)
-              scores.push([newInput.value,timer]);
-              localStorage.setItem("scores", JSON.stringify(scores))
-              console.log(scores)
-              loadHighscores();
+        let restartBtn = document.createElement("button");
+        restartBtn.classList.add("btn", "btn-outline-info", "ml-2");
+        restartBtn.setAttribute("type", "submit");
+        restartBtn.setAttribute("id", "replay");
+        restartBtn.innerHTML = "Play Again";
+        newForm.appendChild(restartBtn);
 
-            
-          })
+        let clearHighscoresBtn = document.createElement("button");
+        clearHighscoresBtn.classList.add("btn", "btn-outline-danger", "ml-2");
+        clearHighscoresBtn.setAttribute("type", "button");
+        clearHighscoresBtn.setAttribute("id", "garbage");
+        clearHighscoresBtn.innerHTML = "Clear Leaderboard";
+        clearHighscoresBtn.addEventListener("click", clearLeaderboard);
+        newForm.appendChild(clearHighscoresBtn);
+      }
 
-          let restartBtn = document.createElement("button");
-          restartBtn.classList.add("btn", "btn-outline-info", "ml-2");
-          restartBtn.setAttribute("type", "submit");
-          restartBtn.setAttribute("id", "replay");
-          restartBtn.innerHTML = "Play Again";
-          newForm.appendChild(restartBtn);
+      function loadHighscores() {
+        subDiv.textContent = "";
+        let scoresList = document.createElement("ol");
+        scoresList.classList.add("mt-5");
+        subDiv.appendChild(scoresList);
+        let storedScores = JSON.parse(localStorage.getItem("scores"));
+        if (storedScores) {
+          storedScores = storedScores.sort(function(a, b) {
+            return b[1] - a[1];
+          });
+          scores = storedScores
 
-          let clearHighscoresBtn = document.createElement("button");
-          clearHighscoresBtn.classList.add("btn", "btn-outline-danger", "ml-2");
-          clearHighscoresBtn.setAttribute("type", "button");
-          clearHighscoresBtn.setAttribute("id", "garbage");
-          clearHighscoresBtn.innerHTML = "Clear Leaderboard";
-          clearHighscoresBtn.addEventListener('click', clearLeaderboard)
-          newForm.appendChild(clearHighscoresBtn);
-
-
-        }
-        
-        function loadHighscores() {
-            subDiv.textContent =''
-            let scoresList = document.createElement('ol')
-            scoresList.classList.add('mt-5')
-            subDiv.appendChild(scoresList)
-            let storedScores = JSON.parse(localStorage.getItem('scores'))
-            if (storedScores){
-
-            
-            storedScores = storedScores.sort(function(a, b){return b[1] - a[1]});
-
-            }
-
-
-            if (storedScores) {
-
-            
-                for (let gameScore of storedScores) {
-                    
-                    let newRanking = document.createElement('li')
-                    newRanking.classList.add('m-2', 'border-bottom-0', 'border-secondary', 'bg-light')
-                    newRanking.innerHTML = gameScore
-                    scoresList.appendChild(newRanking)
-                
-                }
-            }    
+        //   localStorage.setItem("scores", JSON.stringify(scores))
         }
 
-        function clearLeaderboard() {
-            scores = []
-            localStorage.clear();
-            loadHighscores();
+        if (storedScores) {
+          for (let gameScore of storedScores) {
+            let newRanking = document.createElement("li");
+            newRanking.classList.add(
+              "m-2",
+              "border-bottom-0",
+              "border-secondary",
+              "bg-light"
+            );
+            newRanking.innerHTML = gameScore;
+            scoresList.appendChild(newRanking);
+          }
         }
+      }
 
-        function wrongAnswer(){
-            underDiv.textContent = ''
-            let newHead = document.createElement('h3')
-            newHead.classList.add('border-top', 'border-danger','pt-1')
-            newHead.innerHTML = "<i>Wrong!<i>"
-            underDiv.appendChild(newHead)
+      function clearLeaderboard() {
+        scores = [];
+        localStorage.clear();
+        loadHighscores();
+      }
 
-            timer -= 9
+      function wrongAnswer() {
+        underDiv.textContent = "";
+        let newHead = document.createElement("h3");
+        newHead.classList.add("border-top", "border-danger", "pt-1");
+        newHead.innerHTML = "<i>Wrong!<i>";
+        underDiv.appendChild(newHead);
 
-            setTimeout(function(){
-                underDiv.textContent = ''
-            }, 1000);
+        timer -= 9;
 
-            
-        }
+        setTimeout(function() {
+          underDiv.textContent = "";
+        }, 1000);
+      }
 
-        function correctAnswer(){
-            underDiv.textContent = ''
-            let newHead = document.createElement('h3')
-            newHead.classList.add('border-top', 'border-success','pt-1')
-            newHead.innerHTML = "<i>Correct!<i>"
-            underDiv.appendChild(newHead)
+      function correctAnswer() {
+        underDiv.textContent = "";
+        let newHead = document.createElement("h3");
+        newHead.classList.add("border-top", "border-success", "pt-1");
+        newHead.innerHTML = "<i>Correct!<i>";
+        underDiv.appendChild(newHead);
 
-            setTimeout(function(){
-                underDiv.textContent = ''
-            }, 1000);
-            
-        }
+        setTimeout(function() {
+          underDiv.textContent = "";
+        }, 1000);
+      }
 
-        //Here, we add  event listeners to specific buttons, to load certain pages of the quiz,accordingly.
+      //Here, we add  event listeners to specific buttons, to load certain pages of the quiz,accordingly.
 
-        loadHomePage();
+      loadHomePage();
 
-        let homePage = document.getElementById("start");
+      let homePage = document.getElementById("start");
 
-        homePage.addEventListener("click", loadFirstQ);
+      homePage.addEventListener("click", loadFirstQ);
 
-        // let firstButtons = document.getElementsByClassName('answer1')
+     
 
-        // firstButtons.addEventListener('click', loadSecondQ)
+      let timerIntervalId;
 
-        //When a wrong answer is selected, a child node is loaded under the new output div, for the quiz questions/the end page.
-        //This note will say **Correct!** or **Wrong!** accordingly.
+      function stopTimer() {
+        clearInterval(timerIntervalId);
 
-        //The Highscores button a the top left corner (I'll create a NavBar) will bring you to the highscores page.
+        document.getElementById("timer").innerHTML = "";
+      }
 
-        // The submit results button will save yur results to the local storage, and then bring you to the highscores page.
+      function startTimer() {
+        timer = 90;
 
-        //Here we add another click event listener to the start button, and the last quiz page buttons, to turn the timer on/off.
-        //The timer will count down 1 every 1000ms. if it reaches 0 before quiz ends, then we call the end loadFinishPage function, and stop the timer. timer value = score.
-        
-        let timerIntervalId
+        timerIntervalId = setInterval(function() {
+          document.getElementById("timer").innerHTML = timer;
+          timer--;
 
+          if (timer <= -1) {
+            timer = 0;
+            loadFinishPage();
+            return;
+          }
+        }, 1000);
 
-        function stopTimer(){
-
-            clearInterval(timerIntervalId);
-            
-            document.getElementById("timer").innerHTML = ''
-        }
-
-
-        function startTimer(){
-
-            
-                timer = 90;
-            
-                timerIntervalId = setInterval(function() {
-                
-                document.getElementById("timer").innerHTML = timer;
-                timer--;
-
-                if (timer <= -1) {
-                    timer = 0
-                    loadFinishPage()
-                    return
-                }                
-            }, 1000);
-
-
-            console.log(timerIntervalId)
-            
-        }
-
-        
-        
-        </script>
-        
+        console.log(timerIntervalId);
+      }
+    </script>
   </body>
 </html>
