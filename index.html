@@ -13,7 +13,7 @@
     <style>
       /*enter any extra styling for your separators, here.*/
       .wrongg {
-          border-top: 3px;
+          border-bottom: 20px;
           border-color: darkred;
       }
       .correctt {
@@ -26,7 +26,7 @@
     <span class="m-4" id="timer"></span>
 
     <div class="container">
-      <div id="quiz-content"></div>
+      <div  class="mb-4" id="quiz-content"></div>
       <div id="answer-key"></div>
     </div>
 
@@ -88,6 +88,7 @@
           button2.setAttribute("type", "button");
           button2.setAttribute("answer11", "correct!");
           button2.innerHTML = "Smoke trees";
+          button2.addEventListener('click', correctAnswer)
           outputDiv.appendChild(button2);
 
           let button3 = document.createElement("button");
@@ -95,6 +96,7 @@
           button3.setAttribute("type", "button");
           button3.setAttribute("answer1", "wrong!");
           button3.innerHTML = "burn trees";
+          button3.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button3);
 
           let button4 = document.createElement("button");
@@ -102,6 +104,7 @@
           button4.setAttribute("type", "button");
           button4.setAttribute("answer1", "wrong!");
           button4.innerHTML = "burn Tires";
+          button4.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button4);
 
           button2.addEventListener("click", loadSecondQ);
@@ -130,6 +133,7 @@
           button1.setAttribute("type", "button");
           button1.setAttribute("answer2", "wrong!");
           button1.innerHTML = "Pinocchio";
+          button1.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button1);
 
           let button2 = document.createElement("button");
@@ -137,6 +141,7 @@
           button2.setAttribute("type", "button");
           button2.setAttribute("answer2", "wrong!");
           button2.innerHTML = "a liar";
+          button2.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button2);
 
           let button3 = document.createElement("button");
@@ -144,6 +149,7 @@
           button3.setAttribute("type", "button");
           button3.setAttribute("answer2", "wrong!");
           button3.innerHTML = "garden rose";
+          button3.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button3);
 
           let button4 = document.createElement("button");
@@ -151,6 +157,7 @@
           button4.setAttribute("type", "button");
           button4.setAttribute("answer2", "correct!");
           button4.innerHTML = "garden hose";
+          button4.addEventListener('click', correctAnswer)
           outputDiv.appendChild(button4);
 
           button4.addEventListener("click", loadThirdQ);
@@ -175,6 +182,7 @@
           button1.setAttribute("type", "button");
           button1.setAttribute("answer33", "correct!");
           button1.innerHTML = "cornflakes";
+          button1.addEventListener('click', correctAnswer)
           outputDiv.appendChild(button1);
 
           let button2 = document.createElement("button");
@@ -182,6 +190,7 @@
           button2.setAttribute("type", "button");
           button2.setAttribute("answer3", "wrong!");
           button2.innerHTML = "cornroll";
+          button2.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button2);
 
           let button3 = document.createElement("button");
@@ -189,6 +198,7 @@
           button3.setAttribute("type", "button");
           button3.setAttribute("answer3", "wrong!");
           button3.innerHTML = "frostedflakes";
+          button3.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button3);
 
           let button4 = document.createElement("button");
@@ -196,6 +206,7 @@
           button4.setAttribute("type", "button");
           button4.setAttribute("answer1", "wrong!");
           button4.innerHTML = "corndog";
+          button4.addEventListener('click', wrongAnswer)
           outputDiv.appendChild(button4);
 
           button1.addEventListener("click", loadFinishPage);
@@ -249,13 +260,21 @@
 
 
         }
+        
 
 
         function wrongAnswer(){
             underDiv.textContent = ''
             let newHead = document.createElement('h3')
-            newHead.classList.add('wrongg')
+            newHead.classList.add('border-top', 'border-danger','pt-1')
+            newHead.innerHTML = "<i>Wrong!<i>"
             underDiv.appendChild(newHead)
+
+            timer -= 9
+
+            setTimeout(function(){
+                underDiv.textContent = ''
+            }, 1000);
 
             
         }
@@ -263,8 +282,13 @@
         function correctAnswer(){
             underDiv.textContent = ''
             let newHead = document.createElement('h3')
-            newHead.classList.add('correctt')
+            newHead.classList.add('border-top', 'border-success','pt-1')
+            newHead.innerHTML = "<i>Correct!<i>"
+            underDiv.appendChild(newHead)
 
+            setTimeout(function(){
+                underDiv.textContent = ''
+            }, 1000);
             
         }
 
