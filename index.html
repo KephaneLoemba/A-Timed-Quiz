@@ -35,7 +35,13 @@
         // First, we will create several functions that will dynamically load the pages of our quiz, being the three different questions.
 
         let timer
-        let scores = JSON.parse(localStorage.getItem('scores'))
+        let scores = []
+        let memory = JSON.parse(localStorage.getItem('scores'))
+        if (memory) {
+            scores = memory
+        }
+
+
         let underDiv = document.getElementById("answer-key")
         let subDiv = document.getElementById("grand-rankings")
 
@@ -257,8 +263,15 @@
               console.log(scores)
               loadHighscores();
 
-            //   localStorage.getItem('kephane')
+            
           })
+
+          let restartBtn = document.createElement("button");
+          restartBtn.classList.add("btn", "btn-outline-info", "ml-5");
+          restartBtn.setAttribute("type", "submit");
+          restartBtn.setAttribute("id", "replay");
+          restartBtn.innerHTML = "Play Again";
+          newForm.appendChild(restartBtn);
 
         //   localStorage.setItem('items', JSON.stringify(itemsArray))
         //     const data = JSON.parse(localStorage.getItem('items'))
@@ -271,14 +284,19 @@
             let scoresList = document.createElement('ol')
             subDiv.appendChild(scoresList)
             let storedScores = JSON.parse(localStorage.getItem('scores'))
-            for (let gameScore of storedScores) {
+
+            if (storedScores) {
+
+            
+                for (let gameScore of storedScores) {
+                    
+                    let newRanking = document.createElement('li')
+                    newRanking.classList.add('m-2', 'border-bottom-0', 'border-secondary', 'bg-light')
+                    newRanking.innerHTML = gameScore
+                    scoresList.appendChild(newRanking)
                 
-                let newRanking = document.createElement('li')
-                newRanking.classList.add('m-2', 'border-bottom-0', 'border-secondary', 'bg-light')
-                newRanking.innerHTML = gameScore
-                scoresList.appendChild(newRanking)
-               
-            }
+                }
+            }    
         }
 
 
