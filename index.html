@@ -229,13 +229,13 @@
           let newEl = document.createElement("h");
           newEl.innerHTML =
             "<b>All done!</b> You have reached a score of " + '<b>' +
-            timer + '<b>'
+            timer + '</b>' +
             " points. <br>";
           outputDiv.appendChild(newEl);
 
           let newForm = document.createElement("form");
           newForm.innerHTML =
-            "Enter your name below. Click button to record your score.";
+            "Enter your name below. Click submit button to record your score.";
           newForm.setAttribute("style", "max-width: 400px;");
           newForm.setAttribute("id", "start");
           outputDiv.appendChild(newForm);
@@ -252,7 +252,7 @@
           subButton.classList.add("btn", "btn-warning");
           subButton.setAttribute("type", "submit");
           subButton.setAttribute("id", "submit-name");
-          subButton.innerHTML = "Submit score!";
+          subButton.innerHTML = "Submit!";
           newForm.appendChild(subButton);
           subButton.addEventListener('click', function() {
               event.preventDefault();
@@ -267,14 +267,19 @@
           })
 
           let restartBtn = document.createElement("button");
-          restartBtn.classList.add("btn", "btn-outline-info", "ml-5");
+          restartBtn.classList.add("btn", "btn-outline-info", "ml-2");
           restartBtn.setAttribute("type", "submit");
           restartBtn.setAttribute("id", "replay");
           restartBtn.innerHTML = "Play Again";
           newForm.appendChild(restartBtn);
 
-        //   localStorage.setItem('items', JSON.stringify(itemsArray))
-        //     const data = JSON.parse(localStorage.getItem('items'))
+          let clearHighscoresBtn = document.createElement("button");
+          clearHighscoresBtn.classList.add("btn", "btn-outline-danger", "ml-2");
+          clearHighscoresBtn.setAttribute("type", "button");
+          clearHighscoresBtn.setAttribute("id", "garbage");
+          clearHighscoresBtn.innerHTML = "Clear Leaderboard";
+          clearHighscoresBtn.addEventListener('click', clearLeaderboard)
+          newForm.appendChild(clearHighscoresBtn);
 
 
         }
@@ -282,6 +287,7 @@
         function loadHighscores() {
             subDiv.textContent =''
             let scoresList = document.createElement('ol')
+            scoresList.classList.add('mt-5')
             subDiv.appendChild(scoresList)
             let storedScores = JSON.parse(localStorage.getItem('scores'))
 
@@ -299,6 +305,10 @@
             }    
         }
 
+        function clearLeaderboard() {
+            localStorage.clear();
+            loadHighscores();
+        }
 
         function wrongAnswer(){
             underDiv.textContent = ''
