@@ -290,6 +290,13 @@
             scoresList.classList.add('mt-5')
             subDiv.appendChild(scoresList)
             let storedScores = JSON.parse(localStorage.getItem('scores'))
+            if (storedScores){
+
+            
+            storedScores = storedScores.sort(function(a, b){return b[1] - a[1]});
+
+            }
+
 
             if (storedScores) {
 
